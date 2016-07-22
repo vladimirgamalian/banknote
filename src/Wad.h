@@ -5,12 +5,34 @@
 class Wad
 {
 public:
-	void push(const Banknote& banknote)
+	void addBanknote(const Banknote& banknote)
 	{
 		banknotes[banknote]++;
 	}
 
-	int getAmount(const Banknote& banknote)
+	Wad subWad(const Currency& currency, int totalAmount)
+	{
+		Wad result;
+		for (;;)
+		{
+			Banknote b = getHighest(currency, totalAmount);
+			if (b == Banknote(currency, 0))
+				break;
+
+			subBanknote(b);
+			result.addBanknote(b);
+		}
+		return result;
+	}
+
+	// will throw exception, when banknote not exists
+	void subBanknote(const Banknote& banknote)
+	{
+		if ((--banknotes.at(banknote)) == 0)
+			banknotes.erase(banknote);
+	}
+
+	int getCount(const Banknote& banknote)
 	{
 		int total = 0;
 
@@ -32,6 +54,18 @@ public:
 		return total;
 	}
 
+	//TODO: adapt to divider
+	Banknote getHighest(const Currency& currency, int limit) const
+	{
+		Banknote result(currency, 0);
+		for (auto b : banknotes)
+			if (b.first.currency == currency)
+				if (b.first.value <= limit)
+					if (b.first.value > result.value)
+						result = b.first;
+		return result;
+	}
+
 private:
 	struct BanknoteCompare
 	{
@@ -42,5 +76,6 @@ private:
 			return lhs.value < rhs.value;
 		}
 	};
+
 	std::map<Banknote, int, BanknoteCompare> banknotes;
 };
