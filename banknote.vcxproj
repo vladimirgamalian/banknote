@@ -19,8 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Banknote.h" />
+    <ClInclude Include="src\Currency.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\tests\catch.hpp" />
+    <ClInclude Include="src\Wad.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\stdafx.cpp">
