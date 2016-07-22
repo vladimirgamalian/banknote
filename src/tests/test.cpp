@@ -1,5 +1,4 @@
-#define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "stdafx.h"
 
 TEST_CASE("Test") {
 	REQUIRE(2 * 2 == 4);
