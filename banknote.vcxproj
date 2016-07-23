@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="src\Banknote.h" />
     <ClInclude Include="src\Currency.h" />
+    <ClInclude Include="src\Nominals.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\tests\catch.hpp" />
     <ClInclude Include="src\Wad.h" />

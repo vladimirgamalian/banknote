@@ -1,11 +1,21 @@
 #include "stdafx.h"
-#include "../Wad.h"
-
+#include "../Nominals.h"
 
 #define RUB Currency("RUB")
 #define RUB_0 Banknote(RUB, 0)
+#define RUB_10 Banknote(RUB, 10)
+#define RUB_50 Banknote(RUB, 50)
 #define RUB_100 Banknote(RUB, 100)
 #define RUB_500 Banknote(RUB, 500)
+#define RUB_1000 Banknote(RUB, 1000)
+#define RUB_5000 Banknote(RUB, 5000)
+
+#define USD Currency("USD")
+#define USD_0 Banknote(USD, 0)
+#define USD_50 Banknote(USD, 50)
+#define USD_100 Banknote(USD, 100)
+#define USD_500 Banknote(USD, 500)
+#define USD_1000 Banknote(USD, 1000)
 
 TEST_CASE("Currency")
 {
@@ -62,15 +72,31 @@ TEST_CASE("Wad")
 	REQUIRE(wad.getHighest(RUB, 500) == RUB_100);
 	wad.addBanknote(RUB_500);
 	REQUIRE(wad.getHighest(RUB, 500) == RUB_500);
+}
 
+TEST_CASE("Wad::Wad")
+{
+	Wad wad{ RUB_50, RUB_100 };
+	REQUIRE(wad.getCount(RUB_50) == 1);
+	REQUIRE(wad.getCount(RUB_100) == 1);
+	REQUIRE(wad.getCount(RUB_500) == 0);
 
-	// sub wad
+	//TODO: separate test
+	REQUIRE(wad == Wad({ RUB_50, RUB_100 }));
+	REQUIRE(wad == Wad({ RUB_100, RUB_50 }));
+	REQUIRE(wad != Wad({ RUB_100 }));
+	REQUIRE(wad != Wad({ RUB_50, RUB_500 }));
+}
+
+TEST_CASE("Wad::subWad")
+{
+	Wad wad;
+	wad.addBanknote(RUB_100);
+	wad.addBanknote(RUB_100);
+	wad.addBanknote(RUB_500);
+
+	SECTION("test0000")
 	{
-		Wad wad;
-		wad.addBanknote(RUB_100);
-		wad.addBanknote(RUB_100);
-		wad.addBanknote(RUB_500);
-
 		REQUIRE(wad.getCount(RUB_100) == 2);
 		REQUIRE(wad.getCount(RUB_500) == 1);
 
@@ -81,13 +107,8 @@ TEST_CASE("Wad")
 		REQUIRE(wad.getCount(RUB_500) == 1);
 	}
 
-	// sub wad
+	SECTION("test0001")
 	{
-		Wad wad;
-		wad.addBanknote(RUB_100);
-		wad.addBanknote(RUB_100);
-		wad.addBanknote(RUB_500);
-
 		REQUIRE(wad.getCount(RUB_100) == 2);
 		REQUIRE(wad.getCount(RUB_500) == 1);
 
@@ -97,4 +118,10 @@ TEST_CASE("Wad")
 		REQUIRE(wad.getCount(RUB_100) == 0);
 		REQUIRE(wad.getCount(RUB_500) == 1);
 	}
+}
+
+TEST_CASE("Nominals")
+{
+	Wad wad = Nominals::rub();
+	REQUIRE(wad == Wad({RUB_10, RUB_50, RUB_100, RUB_500, RUB_1000, RUB_5000}));
 }

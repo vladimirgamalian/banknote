@@ -5,8 +5,30 @@
 class Wad
 {
 public:
+	Wad()
+	{
+
+	}
+
+	Wad(std::initializer_list<Banknote> l)
+	{
+		for (auto i : l)
+			addBanknote(i);
+	}
+
+	bool operator == (const Wad& other) const
+	{
+		return banknotes == other.banknotes;
+	}
+	bool operator != (const Wad& other) const
+	{
+		return banknotes != other.banknotes;
+	}
+
 	void addBanknote(const Banknote& banknote)
 	{
+		//TODO: test for empty banknote (or prevent construct empty banknote)
+
 		banknotes[banknote]++;
 	}
 
@@ -54,6 +76,14 @@ public:
 		return total;
 	}
 
+	std::string toString() const
+	{
+		std::string result;
+		for (auto b : banknotes)
+			result += b.first.toString() + " (" + std::to_string(b.second) + ")\n";
+		return result;
+	}
+
 	//TODO: adapt to divider
 	Banknote getHighest(const Currency& currency, int limit) const
 	{
@@ -71,9 +101,9 @@ private:
 	{
 		bool operator() (const Banknote& lhs, const Banknote& rhs) const
 		{
-			if (lhs.value == rhs.value)
-				return lhs.currency.toString() < rhs.currency.toString();
-			return lhs.value < rhs.value;
+			if (lhs.currency.toString() == rhs.currency.toString())
+				return lhs.value < rhs.value;
+			return lhs.currency.toString() < rhs.currency.toString();
 		}
 	};
 
