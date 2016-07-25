@@ -74,18 +74,40 @@ TEST_CASE("Wad")
 	REQUIRE(wad.getHighest(RUB, 500) == RUB_500);
 }
 
+TEST_CASE("Wad zero banknote")
+{
+	Wad wad {RUB_10, RUB_0};
+	REQUIRE(wad.getAmount(RUB) == 10);
+	REQUIRE(wad.getCount(RUB_10) == 1);
+	REQUIRE(wad.getCount(RUB_0) == 0);
+	wad.addBanknote(RUB_0);
+	REQUIRE(wad.getCount(RUB_0) == 0);
+	REQUIRE(wad.getAmount(RUB) == 10);
+}
+
 TEST_CASE("Wad::Wad")
 {
-	Wad wad{ RUB_50, RUB_100 };
-	REQUIRE(wad.getCount(RUB_50) == 1);
-	REQUIRE(wad.getCount(RUB_100) == 1);
-	REQUIRE(wad.getCount(RUB_500) == 0);
+	{
+		Wad wad{ RUB_50, RUB_100 };
+		REQUIRE(wad.getCount(RUB_50) == 1);
+		REQUIRE(wad.getCount(RUB_100) == 1);
+		REQUIRE(wad.getCount(RUB_500) == 0);
+	}
+	{
+		Wad wad{ RUB_50, RUB_50 };
+		REQUIRE(wad.getCount(RUB_50) == 2);
+		REQUIRE(wad.getCount(RUB_100) == 0);
+	}
 
 	//TODO: separate test
-	REQUIRE(wad == Wad({ RUB_50, RUB_100 }));
-	REQUIRE(wad == Wad({ RUB_100, RUB_50 }));
-	REQUIRE(wad != Wad({ RUB_100 }));
-	REQUIRE(wad != Wad({ RUB_50, RUB_500 }));
+	{
+		Wad wad{ RUB_50, RUB_100 };
+		REQUIRE(wad == Wad({ RUB_50, RUB_100 }));
+		REQUIRE(wad == Wad({ RUB_100, RUB_50 }));
+		REQUIRE(wad != Wad({ RUB_100 }));
+		REQUIRE(wad != Wad({ RUB_50, RUB_500 }));
+	}
+
 }
 
 TEST_CASE("Wad::subWad")
@@ -124,4 +146,13 @@ TEST_CASE("Nominals")
 {
 	Wad wad = Nominals::rub();
 	REQUIRE(wad == Wad({RUB_10, RUB_50, RUB_100, RUB_500, RUB_1000, RUB_5000}));
+}
+
+TEST_CASE("Wad::test")
+{
+	//TODO: more tests
+	Wad wad { RUB_50, RUB_100, RUB_500 };
+	REQUIRE(wad.test(Nominals::rub()));
+	wad.addBanknote(USD_100);
+	REQUIRE_FALSE(wad.test(Nominals::rub()));
 }

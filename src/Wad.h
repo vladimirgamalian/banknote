@@ -25,11 +25,19 @@ public:
 		return banknotes != other.banknotes;
 	}
 
+	bool test(const Wad& nominals) const
+	{
+		for (auto b : banknotes)
+			if (!nominals.getCount(b.first))
+				return false;
+		return true;
+	}
+
 	void addBanknote(const Banknote& banknote)
 	{
 		//TODO: test for empty banknote (or prevent construct empty banknote)
-
-		banknotes[banknote]++;
+		if (banknote.value)
+			banknotes[banknote]++;
 	}
 
 	Wad subWad(const Currency& currency, int totalAmount)
@@ -54,7 +62,7 @@ public:
 			banknotes.erase(banknote);
 	}
 
-	int getCount(const Banknote& banknote)
+	int getCount(const Banknote& banknote) const
 	{
 		int total = 0;
 
@@ -65,7 +73,7 @@ public:
 		return total;
 	}
 
-	int getAmount(const Currency& currency)
+	int getAmount(const Currency& currency) const
 	{
 		int total = 0;
 
