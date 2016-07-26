@@ -16,6 +16,12 @@ public:
 			addBanknote(i);
 	}
 
+	Wad(const std::vector<Banknote>& v)
+	{
+		for (auto i : v)
+			addBanknote(i);
+	}
+
 	bool operator == (const Wad& other) const
 	{
 		return banknotes == other.banknotes;
@@ -92,7 +98,6 @@ public:
 		return result;
 	}
 
-	//TODO: adapt to divider
 	Banknote getHighest(const Currency& currency, int limit) const
 	{
 		Banknote result(currency, 0);

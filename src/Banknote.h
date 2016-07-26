@@ -6,8 +6,8 @@ class Banknote
 public:
 	friend class Wad;
 
-	Banknote(const Currency& currency, int value, int divider = 1) :
-		currency(currency), value(value), divider(divider)
+	Banknote(const Currency& currency, int value) :
+		currency(currency), value(value)
 	{
 
 	}
@@ -19,11 +19,10 @@ public:
 
 	bool operator == (const Banknote& other) const
 	{
-		return (currency == other.currency) && (value == other.value) && (divider == other.divider);
+		return (currency == other.currency) && (value == other.value);
 	}
 
 private:
 	Currency currency;
 	int value;
-	int divider;
 };

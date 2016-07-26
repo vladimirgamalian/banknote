@@ -24,6 +24,7 @@
     <ClInclude Include="src\Nominals.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\tests\catch.hpp" />
+    <ClInclude Include="src\tests\Defines.h" />
     <ClInclude Include="src\Wad.h" />
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +37,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\tests\test.cpp" />
+    <ClCompile Include="src\tests\WadTest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6F8ADCE6-04D5-4B8D-9BCA-E9E59EE9DCC4}</ProjectGuid>
