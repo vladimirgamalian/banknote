@@ -3,7 +3,11 @@ sudo: required
 dist: trusty
 
 compiler:
-  - gcc
+  - clang
+  
+os:
+  - linux
+  - osx
   
 script:
   - cmake .
