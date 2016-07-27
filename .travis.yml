@@ -9,5 +9,8 @@ script:
   - cmake .
   - make
   
+after_success:
+  ./testrunner
+  
 notifications:
   email: false
