@@ -2,7 +2,7 @@
 
 TEST_CASE("Banknote")
 {
-	Banknote banknote(Currency("RUB"), 1000);
+	Banknote banknote(Currency("RUB"), 1001);
 	REQUIRE(banknote.toString() == "1000 RUB");
 	REQUIRE(banknote == Banknote(Currency("RUB"), 1000));
 	REQUIRE_FALSE(banknote == Banknote(Currency("RUB"), 100));
