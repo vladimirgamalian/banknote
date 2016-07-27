@@ -13,9 +13,7 @@ os:
 script:
   - cmake .
   - make
-  
-after_success:
-  ./testrunner
+  - ./testrunner
   
 notifications:
   email: false
