@@ -1,5 +1,6 @@
 #pragma once
-#include "../Nominals.h"
+#include "catch.hpp"
+#include "../banknote/Nominals.h"
 
 #define RUB Currency("RUB")
 #define RUB_0 Banknote(RUB, 0)

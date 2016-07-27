@@ -19,25 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Banknote.h" />
-    <ClInclude Include="src\Currency.h" />
-    <ClInclude Include="src\Nominals.h" />
-    <ClInclude Include="src\stdafx.h" />
-    <ClInclude Include="src\tests\catch.hpp" />
-    <ClInclude Include="src\tests\Defines.h" />
-    <ClInclude Include="src\Wad.h" />
+    <ClInclude Include="banknote\Banknote.h" />
+    <ClInclude Include="banknote\Currency.h" />
+    <ClInclude Include="banknote\Nominals.h" />
+    <ClInclude Include="tests\catch.hpp" />
+    <ClInclude Include="tests\TestDefines.h" />
+    <ClInclude Include="banknote\Wad.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\tests\runner.cpp">
+    <ClCompile Include="tests\BanknoteTest.cpp" />
+    <ClCompile Include="tests\CurrencyTest.cpp" />
+    <ClCompile Include="tests\NominalsTest.cpp" />
+    <ClCompile Include="tests\TestRunner.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\tests\test.cpp" />
-    <ClCompile Include="src\tests\WadTest.cpp" />
+    <ClCompile Include="tests\WadTest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6F8ADCE6-04D5-4B8D-9BCA-E9E59EE9DCC4}</ProjectGuid>
@@ -107,7 +104,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
