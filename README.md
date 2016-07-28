@@ -5,7 +5,7 @@
 
 Little C++ library for dealing with banknote wads.
 
-```
+```c++
 // Create a new wad
 Wad wad{ Banknote(Currency("USD"), 10),
 	Banknote(Currency("USD"), 10),
