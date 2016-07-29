@@ -3,7 +3,7 @@
 
 # banknote
 
-Little C++ library for dealing with banknote wads.
+Little header-only C++ library for dealing with banknote wads.
 
 ```c++
 // Create a new wad
