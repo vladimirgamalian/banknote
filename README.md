@@ -14,7 +14,7 @@ Wad wad{ Banknote(Currency("USD"), 10),
 
 assert(wad.getCount(Banknote(Currency("USD"), 10)) == 2);
 assert(wad.getCount(Banknote(Currency("USD"), 50)) == 1);
-assert(wad.getAmount(Currency("USD")) == 80);
+assert(wad.getAmount(Currency("USD")) == 70);
 
 // Add and Sub banknotes
 wad.addBanknote(Banknote(Currency("USD"), 50));
